@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import { Post as PostModel, Comment as CommentModel } from '../types';
+import { Post as PostModel, Comment as CommentModel, Like as LikeModel } from '../types';
 import CardBase from './Card';
 import { Flex } from './Flex';
 import ProfilePic from './ProfilePic';
@@ -9,6 +9,7 @@ import { Box } from './Box';
 import TagBase from './Tag';
 import Comments from './Comments';
 import Comment from './Comment';
+import LikeButton from './LikeButton';
 
 interface PostHeaderProps {
   user: PostModel['user'];
@@ -35,8 +36,14 @@ const PostFooter: React.FC<PostProps> = ({ post }) => {
     owner: post.user
   }
 
+  const postLiked: LikeModel = {
+    id: Math.round(Math.random() * 10000).toString(),
+    liked: false
+  };
+
   return (
     <Box mTop={'lg'}>
+      <LikeButton like={postLiked} />
       <TagsContainer>
         {post.tags.map(tag => (
           <Box key={tag.id} mRight='sm'>
