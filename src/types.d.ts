@@ -25,3 +25,7 @@ export interface Comment extends BaseEntity {
   message: string;
   owner: User;
 }
+
+export interface Like extends BaseEntity {
+  liked: boolean;
+}
